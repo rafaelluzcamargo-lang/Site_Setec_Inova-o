@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RotinaPro — Organizador de rotina pessoal">
+  <title>RotinaPro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="life-layer" id="lifeLayer" aria-hidden="true"></div>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="brand-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <strong class="brand-name">RotinaPro</strong>
+            <span class="brand-sub">seu dia, em ordem</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <p class="nav-label">Início</p>
+        <button class="nav-btn active" data-section="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Dashboard
+        </button>
+        <button class="nav-btn" data-section="tasks">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Tarefas
+        </button>
+        <button class="nav-btn" data-section="calendar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Calendário
+        </button>
+
+        <p class="nav-label">Crescimento</p>
+        <button class="nav-btn" data-section="routines">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          Rotinas
+        </button>
+        <button class="nav-btn" data-section="habits">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          Hábitos
+        </button>
+        <button class="nav-btn" data-section="goals">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Metas
+        </button>
+
+        <p class="nav-label">Mais</p>
+        <button class="nav-btn" data-section="notes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Anotações
+        </button>
+        <button class="nav-btn" data-section="stats">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Estatísticas
+        </button>
+        <button class="nav-btn" data-section="settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Configurações
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="theme-btn" id="themeToggle">
+          <span class="theme-icon">☾</span>
+          <span class="theme-label">Modo escuro</span>
+        </button>
+        <div class="sidebar-quote">
+          <p>“Pequenos passos diários constroem grandes mudanças.”</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar-title">
+          <h1 id="pageTitle">Dashboard</h1>
+          <p class="topbar-date" id="currentDate"></p>
+        </div>
+        <div class="topbar-right">
+          <div class="focus-pill">
+            <span class="focus-dot"></span>
+            Foco do dia
+          </div>
+        </div>
+      </header>
+
+      <div class="page" id="contentArea">
+
+        <!-- DASHBOARD -->
+        <section class="sec active" id="section-dashboard">
+          <div class="welcome-banner">
+            <div class="welcome-text">
+              <p class="welcome-label">Bem-vindo de volta</p>
+              <h2 class="welcome-title" id="heroGreeting">Bom dia</h2>
+              <p class="welcome-desc">Organize o que importa, um passo de cada vez. Aqui está o panorama do seu dia.</p>
+            </div>
+            <div class="welcome-actions">
+              <button class="btn btn-fill" onclick="App.navigate('tasks')">Nova tarefa</button>
+              <button class="btn btn-outline" onclick="App.navigate('habits')">Registrar hábito</button>
+            </div>
+            <div class="welcome-deco" aria-hidden="true">
+              <div class="deco-circle c1"></div>
+              <div class="deco-circle c2"></div>
+              <div class="deco-leaf"></div>
+            </div>
+          </div>
+
+          <div class="kpi-row">
+            <article class="kpi">
+              <div class="kpi-icon ki-tasks">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              </div>
+              <div>
+                <span class="kpi-num" id="dashPendingTasks">0</span>
+                <span class="kpi-lab">Pendentes</span>
+              </div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon ki-done">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <span class="kpi-num" id="dashCompletedToday">0</span>
+                <span class="kpi-lab">Feitas hoje</span>
+              </div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon ki-habit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div>
+                <span class="kpi-num" id="dashHabitsToday">0</span>
+                <span class="kpi-lab">Hábitos</span>
+              </div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon ki-prog">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12A10 10 0 1112 2"/><polyline points="22 4 22 12 14 12"/></svg>
+              </div>
+              <div>
+                <span class="kpi-num" id="dashProgress">0%</span>
+                <span class="kpi-lab">Progresso</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="dash-layout">
+            <div class="dash-main">
+              <div class="panel">
+                <div class="panel-head">
+                  <h3>Tarefas de hoje</h3>
+                  <button class="link-btn" onclick="App.navigate('tasks')">Ver todas</button>
+                </div>
+                <ul class="soft-list" id="dashTasksList"></ul>
+                <p class="empty" id="dashTasksEmpty">Nada por aqui — aproveite o espaço ou adicione uma tarefa.</p>
+              </div>
+
+              <div class="panel">
+                <div class="panel-head">
+                  <h3>Compromissos</h3>
+                  <button class="link-btn" onclick="App.navigate('calendar')">Calendário</button>
+                </div>
+                <ul class="soft-list" id="dashEventsList"></ul>
+                <p class="empty" id="dashEventsEmpty">Agenda livre neste momento.</p>
+              </div>
+            </div>
+
+            <aside class="dash-side">
+              <div class="live-clock anim-in">
+                <div class="clock-led"></div>
+                <div class="clock-time"><span id="clockHMS">00:00</span><span class="clock-sec" id="clockSec">:00</span></div>
+                <div class="clock-date" id="clockDateLabel"></div>
+              </div>
+
+              <div class="panel anim-in">
+                <div class="panel-head"><h3>Como você está?</h3></div>
+                <div class="mood-row" id="moodRow">
+                  <button type="button" class="mood-btn" data-mood="1" title="Baixa">😔<span>Baixa</span></button>
+                  <button type="button" class="mood-btn" data-mood="2" title="Ok">😐<span>Ok</span></button>
+                  <button type="button" class="mood-btn" data-mood="3" title="Boa">🙂<span>Boa</span></button>
+                  <button type="button" class="mood-btn" data-mood="4" title="Ótima">😄<span>Ótima</span></button>
+                </div>
+              </div>
+
+              <div class="panel panel-accent">
+                <div class="panel-head">
+                  <h3>Hábitos de hoje</h3>
+                  <button class="link-btn" onclick="App.navigate('habits')">Todos</button>
+                </div>
+                <ul class="soft-list" id="dashHabitsList"></ul>
+                <p class="empty" id="dashHabitsEmpty">Cadastre hábitos para acompanhar aqui.</p>
+              </div>
+
+              <div class="panel">
+                <div class="panel-head">
+                  <h3>Metas ativas</h3>
+                  <button class="link-btn" onclick="App.navigate('goals')">Todas</button>
+                </div>
+                <ul class="soft-list" id="dashGoalsList"></ul>
+                <p class="empty" id="dashGoalsEmpty">Defina metas e veja o progresso.</p>
+              </div>
+
+              <div class="panel anim-in">
+                <div class="panel-head"><h3>Atividade recente</h3></div>
+                <div class="activity-feed" id="activityFeed">
+                  <p class="empty" style="padding:1rem 0">Suas ações aparecerão aqui.</p>
+                </div>
+              </div>
+
+              <div class="tip-card anim-in">
+                <span class="tip-label">Dica do dia</span>
+                <p id="dailyTip">Reserve 10 minutos pela manhã para revisar tarefas e priorizar o que realmente importa.</p>
+              </div>
+
+              <div class="panel anim-in">
+                <div class="panel-head"><h3>Resumo rápido</h3></div>
+                <div class="quick-stats">
+                  <div class="qs-row"><span>Tarefas totais</span><strong id="qsTotalTasks">0</strong></div>
+                  <div class="qs-row"><span>Rotinas ativas</span><strong id="qsRoutines">0</strong></div>
+                  <div class="qs-row"><span>Notas salvas</span><strong id="qsNotes">0</strong></div>
+                  <div class="qs-row"><span>Melhor sequência</span><strong id="qsBestStreak">0 dias</strong></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="panel anim-in" style="margin-top:1.25rem">
+            <div class="panel-head">
+              <h3>Ações rápidas</h3>
+            </div>
+            <div class="quick-actions">
+              <button class="qa-btn" onclick="App.navigate('tasks'); setTimeout(()=>document.getElementById('btnNewTask')?.click(),100)">
+                <span class="qa-ico">✓</span>
+                <span>Nova tarefa</span>
+              </button>
+              <button class="qa-btn" onclick="App.navigate('habits')">
+                <span class="qa-ico">◈</span>
+                <span>Hábitos</span>
+              </button>
+              <button class="qa-btn" onclick="App.navigate('calendar'); setTimeout(()=>document.getElementById('btnNewEvent')?.click(),100)">
+                <span class="qa-ico">▦</span>
+                <span>Compromisso</span>
+              </button>
+              <button class="qa-btn" onclick="App.navigate('notes'); setTimeout(()=>document.getElementById('btnNewNote')?.click(),100)">
+                <span class="qa-ico">✎</span>
+                <span>Anotação</span>
+              </button>
+              <button class="qa-btn" onclick="App.navigate('goals')">
+                <span class="qa-ico">◎</span>
+                <span>Metas</span>
+              </button>
+              <button class="qa-btn" onclick="App.navigate('stats')">
+                <span class="qa-ico">▣</span>
+                <span>Estatísticas</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TASKS -->
+        <section class="sec" id="section-tasks">
+          <div class="sec-intro">
+            <div>
+              <h2>Tarefas</h2>
+              <p>Priorize, organize e conclua o que precisa ser feito.</p>
+            </div>
+            <button class="btn btn-fill" id="btnNewTask">+ Nova tarefa</button>
+          </div>
+          <div class="toolbar">
+            <div class="search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="taskSearch" placeholder="Buscar tarefas…">
+            </div>
+            <div class="filters">
+              <select id="taskFilterStatus">
+                <option value="all">Status</option>
+                <option value="pending">Pendentes</option>
+                <option value="completed">Concluídas</option>
+              </select>
+              <select id="taskFilterPriority">
+                <option value="all">Prioridade</option>
+                <option value="high">Alta</option>
+                <option value="medium">Média</option>
+                <option value="low">Baixa</option>
+              </select>
+              <select id="taskFilterCategory">
+                <option value="all">Categoria</option>
+              </select>
+              <select id="taskSort">
+                <option value="default">Ordenar</option>
+                <option value="date">Por data</option>
+                <option value="priority">Por prioridade</option>
+                <option value="title">Por título</option>
+              </select>
+            </div>
+          </div>
+          <div class="bulk-bar" id="taskBulkBar">
+            <span id="taskCountLabel">0 tarefas</span>
+            <div class="bulk-acts">
+              <button class="btn btn-ghost btn-sm" id="btnClearCompleted">Limpar concluídas</button>
+            </div>
+          </div>
+          <div class="panel">
+            <ul class="task-list" id="tasksList"></ul>
+            <p class="empty" id="tasksEmpty">Nenhuma tarefa ainda. Comece criando a primeira.</p>
+          </div>
+        </section>
+
+        <!-- CALENDAR -->
+        <section class="sec" id="section-calendar">
+          <div class="sec-intro">
+            <div>
+              <h2>Calendário</h2>
+              <p>Veja e planeje seus compromissos no tempo.</p>
+            </div>
+            <button class="btn btn-fill" id="btnNewEvent">+ Compromisso</button>
+          </div>
+          <div class="toolbar cal-toolbar">
+            <div class="cal-nav">
+              <button class="icon-btn" id="calPrev">‹</button>
+              <h3 id="calTitle"></h3>
+              <button class="icon-btn" id="calNext">›</button>
+              <button class="btn btn-ghost" id="calToday">Hoje</button>
+            </div>
+            <div class="seg">
+              <button class="seg-btn active" data-view="month">Mês</button>
+              <button class="seg-btn" data-view="week">Semana</button>
+              <button class="seg-btn" data-view="day">Dia</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div id="calendarContainer"></div>
+          </div>
+          <div class="panel" style="margin-top:1rem">
+            <div class="panel-head"><h3>Neste dia</h3></div>
+            <ul class="soft-list" id="dayEventsList"></ul>
+            <p class="empty" id="dayEventsEmpty">Sem compromissos neste dia.</p>
+          </div>
+        </section>
+
+        <!-- ROUTINES -->
+        <section class="sec" id="section-routines">
+          <div class="sec-intro">
+            <div>
+              <h2>Rotinas</h2>
+              <p>Blocos recorrentes que dão estrutura à sua semana.</p>
+            </div>
+            <button class="btn btn-fill" id="btnNewRoutine">+ Nova rotina</button>
+          </div>
+          <div class="cards-grid" id="routinesGrid"></div>
+          <p class="empty" id="routinesEmpty">Crie rotinas para os horários que se repetem — manhã, trabalho, noite.</p>
+        </section>
+
+        <!-- HABITS -->
+        <section class="sec" id="section-habits">
+          <div class="sec-intro">
+            <div>
+              <h2>Hábitos</h2>
+              <p>Consistência diária. Marque, acompanhe e mantenha a sequência.</p>
+            </div>
+            <button class="btn btn-fill" id="btnNewHabit">+ Novo hábito</button>
+          </div>
+          <div class="cards-grid" id="habitsGrid"></div>
+          <p class="empty" id="habitsEmpty">Hábitos pequenos e constantes mudam o quadro inteiro. Adicione o primeiro.</p>
+        </section>
+
+        <!-- GOALS -->
+        <section class="sec" id="section-goals">
+          <div class="sec-intro">
+            <div>
+              <h2>Metas</h2>
+              <p>Objetivos claros com progresso visível ao longo do tempo.</p>
+            </div>
+            <button class="btn btn-fill" id="btnNewGoal">+ Nova meta</button>
+          </div>
+          <div class="cards-grid" id="goalsGrid"></div>
+          <p class="empty" id="goalsEmpty">Defina para onde quer chegar e atualize o progresso aos poucos.</p>
+        </section>
+
+        <!-- NOTES -->
+        <section class="sec" id="section-notes">
+          <div class="sec-intro">
+            <div>
+              <h2>Anotações</h2>
+              <p>Ideias, lembretes e rascunhos em um só lugar.</p>
+            </div>
+            <button class="btn btn-fill" id="btnNewNote">+ Nova anotação</button>
+          </div>
+          <div class="toolbar">
+            <div class="search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="noteSearch" placeholder="Buscar anotações…">
+            </div>
+          </div>
+          <div class="cards-grid notes-grid" id="notesGrid"></div>
+          <p class="empty" id="notesEmpty">Suas anotações aparecerão aqui.</p>
+        </section>
+
+        <!-- STATS -->
+        <section class="sec" id="section-stats">
+          <div class="sec-intro">
+            <div>
+              <h2>Estatísticas</h2>
+              <p>Números reais a partir do que você registra no app.</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <article class="kpi">
+              <div class="kpi-icon ki-tasks"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+              <div><span class="kpi-num" id="statTotalTasks">0</span><span class="kpi-lab">Total de tarefas</span></div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon ki-done"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><span class="kpi-num" id="statCompletedTasks">0</span><span class="kpi-lab">Concluídas</span></div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon ki-prog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12A10 10 0 1112 2"/><polyline points="22 4 22 12 14 12"/></svg></div>
+              <div><span class="kpi-num" id="statCompletionRate">0%</span><span class="kpi-lab">Taxa de conclusão</span></div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon ki-habit"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div><span class="kpi-num" id="statTotalHabits">0</span><span class="kpi-lab">Hábitos</span></div>
+            </article>
+          </div>
+          <div class="stats-grid">
+            <div class="panel"><div class="panel-head"><h3>Por prioridade</h3></div><div class="chart" id="chartPriority"></div></div>
+            <div class="panel"><div class="panel-head"><h3>Por categoria</h3></div><div class="chart" id="chartCategory"></div></div>
+            <div class="panel"><div class="panel-head"><h3>Hábitos — 7 dias</h3></div><div class="chart" id="chartHabits"></div></div>
+            <div class="panel"><div class="panel-head"><h3>Progresso das metas</h3></div><div class="chart" id="chartGoals"></div></div>
+            <div class="panel"><div class="panel-head"><h3>Atividade semanal</h3></div><div class="chart" id="chartWeekly"></div></div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="sec" id="section-settings">
+          <div class="sec-intro">
+            <div>
+              <h2>Configurações</h2>
+              <p>Personalize o app, preferências e seus dados locais.</p>
+            </div>
+          </div>
+
+          <div class="settings-layout">
+            <!-- Aparência -->
+            <div class="panel settings-card anim-in">
+              <div class="panel-head">
+                <h3>Aparência</h3>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Tema</strong>
+                  <p class="hint">Claro, escuro ou automático com o sistema</p>
+                </div>
+                <div class="theme-opts">
+                  <button class="btn btn-ghost theme-opt" id="setThemeLight" data-theme-btn="light">Claro</button>
+                  <button class="btn btn-ghost theme-opt" id="setThemeDark" data-theme-btn="dark">Escuro</button>
+                  <button class="btn btn-ghost theme-opt" id="setThemeSystem" data-theme-btn="system">Sistema</button>
+                </div>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Animações</strong>
+                  <p class="hint">Reduzir movimento na interface</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="prefReduceMotion">
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Preferências -->
+            <div class="panel settings-card anim-in">
+              <div class="panel-head">
+                <h3>Preferências</h3>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Prioridade padrão</strong>
+                  <p class="hint">Usada ao criar novas tarefas</p>
+                </div>
+                <select id="prefDefaultPriority" class="pref-select">
+                  <option value="low">Baixa</option>
+                  <option value="medium" selected>Média</option>
+                  <option value="high">Alta</option>
+                </select>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Início da semana</strong>
+                  <p class="hint">No calendário e nas rotinas</p>
+                </div>
+                <select id="prefWeekStart" class="pref-select">
+                  <option value="0">Domingo</option>
+                  <option value="1">Segunda</option>
+                </select>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Confirmar exclusões</strong>
+                  <p class="hint">Pedir confirmação antes de apagar</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="prefConfirmDelete" checked>
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Categorias -->
+            <div class="panel settings-card anim-in">
+              <div class="panel-head">
+                <h3>Categorias de tarefas</h3>
+              </div>
+              <div class="setting-block">
+                <p class="hint" style="margin-bottom:0.75rem">Categorias usadas nas tarefas. Adicione as suas para filtrar melhor.</p>
+                <div class="cat-add-row">
+                  <input type="text" id="newCategoryInput" placeholder="Nome da categoria" maxlength="40">
+                  <button class="btn btn-fill" id="btnAddCategory">Adicionar</button>
+                </div>
+                <ul class="cat-list" id="categoryList"></ul>
+                <p class="empty" id="categoryEmpty" style="padding:1rem 0">Nenhuma categoria personalizada.</p>
+              </div>
+            </div>
+
+            <!-- Dados -->
+            <div class="panel settings-card anim-in">
+              <div class="panel-head">
+                <h3>Dados e backup</h3>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Exportar backup</strong>
+                  <p class="hint">Baixa um arquivo JSON com tudo</p>
+                </div>
+                <button class="btn btn-fill" id="btnExport">Exportar</button>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Importar backup</strong>
+                  <p class="hint">Substitui os dados atuais</p>
+                </div>
+                <input type="file" id="importFile" accept=".json" hidden>
+                <button class="btn btn-outline" id="btnImport">Importar</button>
+              </div>
+              <div class="setting">
+                <div>
+                  <strong>Estatísticas de armazenamento</strong>
+                  <p class="hint" id="storageInfo">Calculando…</p>
+                </div>
+              </div>
+              <div class="setting danger-zone">
+                <div>
+                  <strong>Limpar todos os dados</strong>
+                  <p class="hint">Apaga tarefas, hábitos, metas e o restante</p>
+                </div>
+                <button class="btn btn-danger" id="btnClearData">Limpar tudo</button>
+              </div>
+            </div>
+
+            <!-- Atalhos -->
+            <div class="panel settings-card anim-in">
+              <div class="panel-head">
+                <h3>Atalhos do teclado</h3>
+              </div>
+              <div class="shortcuts">
+                <div class="sc-row"><kbd>Esc</kbd><span>Fechar modal / cancelar</span></div>
+                <div class="sc-row"><kbd>1</kbd>–<kbd>9</kbd><span>Ir para seções do menu (com foco na página)</span></div>
+              </div>
+              <p class="hint" style="padding:0.75rem 1.15rem 1rem">Os dados ficam só neste navegador (localStorage).</p>
+            </div>
+
+            <!-- Sobre -->
+            <div class="panel settings-card about anim-in">
+              <div class="about-mark">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <h3>RotinaPro</h3>
+              <p>Versão 1.1 · HTML, CSS e JavaScript puros</p>
+              <p class="hint">Organizador de rotina pessoal — privacidade total, sem servidores.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="status-bar">
+        <span class="status-bar-led"></span>
+        <span>RotinaPro <strong>online</strong></span>
+        <span id="statusItems">0 itens</span>
+        <span id="statusClock" style="margin-left:auto;font-variant-numeric:tabular-nums"></span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-head">
+        <h2 id="modalTitle">Título</h2>
+        <button class="modal-x" id="modalClose">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot" id="modalFooter"></div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toastContainer"></div>
+
+  <div class="overlay" id="confirmOverlay">
+    <div class="confirm">
+      <p id="confirmMessage"></p>
+      <div class="confirm-acts">
+        <button class="btn btn-outline" id="confirmCancel">Cancelar</button>
+        <button class="btn btn-danger" id="confirmOk">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
